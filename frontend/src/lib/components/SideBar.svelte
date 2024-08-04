@@ -32,18 +32,18 @@
   <Sidebar class="h-full w-full">
     <SidebarWrapper class="h-full w-full">
       <SidebarGroup>
-        <h1 class="text-lg font-bold mb-4 text-center text-black 4xl:text-2xl 4xl:mb-6 4xl:mt-2">
+        <h1 class="text-lg font-bold mb-4 text-center text-black 4xl:text-3xl 4xl:mb-7 4xl:mt-3">
           Welcome {id}
         </h1>
         <hr class="border-gray-600" />
-        <SidebarItem label="User Management" class="4xl:text-xl" on:click={clickUserManagement}>
+        <SidebarItem label="User Management" class="4xl:text-2xl" on:click={clickUserManagement}>
           <svelte:fragment slot="icon">
             <UserSolid
               class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
             />
           </svelte:fragment>
         </SidebarItem>
-        <SidebarItem label="Lock Management" class="4xl:text-xl" on:click={clickLockManagement}>
+        <SidebarItem label="Lock Management" class="4xl:text-2xl" on:click={clickLockManagement}>
           <svelte:fragment slot="icon">
             <svg
               class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"

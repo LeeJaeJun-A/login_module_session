@@ -110,16 +110,16 @@
   class="flex flex-col w-full items-center relative"
   style="height: 94vh;"
 >
-  <div class="w-11/12 h-full p-4 flex flex-col">
-    <h1 class="text-2xl font-bold mb-6 4xl:text-4xl">User Management</h1>
+  <div class="h-full p-4 flex flex-col 4xl:p-6" style="width: 95%">
+    <h1 class="text-2xl font-bold mb-3 4xl:text-4xl 4xl:mb-6">User Management</h1>
     <div
-      class="flex justify-between items-center w-full bg-white max-h-20"
+      class="flex justify-between items-center w-full bg-white max-h-20 rounded-lg mb-2 shadow-lg "
       style="height: 10%;"
     >
       <div
         class="flex items-center h-full justify-center items-center space-x-4 p-2"
       >
-        <div class="relative">
+        <div class="relative 4xl:ml-2">
           <label for="table-search" class="sr-only">Search</label>
           <div
             class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
@@ -157,12 +157,12 @@
           <option value="admin">Admin</option>
         </select>
       </div>
-      <div class="flex items-center h-full justify-center p-2">
+      <div class="flex items-center h-full justify-center p-3  4xl:mr-2">
         <button
           on:click={() => {
             $showCreateUser = true;
           }}
-          class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center 4xl:text-xl "
+          class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-1.5 text-center 4xl:px-10 4xl:text-xl 4xl:py-2.5"
         >
           Create User
         </button>
@@ -203,7 +203,8 @@
       class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-20"
     >
       <div
-        class="max-h-full w-96 overflow-auto bg-white rounded-lg shadow-lg"
+        class="min-h-96 overflow-auto bg-white rounded-lg shadow-lg"
+        style="width: 33%; max-width:600px; height: 40%"
       >
         <SignUp onClose={closeModal} />
       </div>
