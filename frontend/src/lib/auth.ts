@@ -78,6 +78,8 @@ export const verifyToken = async (): Promise<{
 export function logout() {
   localStorage.setItem("access_token", "");
   localStorage.setItem("refresh_token", "");
+  setId(null);
+  setRole(null);
   goto("/");
 }
 

@@ -12,6 +12,7 @@
   import { writable } from "svelte/store";
   import fastapi from "$lib/fastapi";
   import SignUp from "$lib/components/SignUp.svelte";
+  import { getId } from "$lib/store";
 
   type User = {
     id: string;
@@ -55,6 +56,11 @@
       confirmButtonText: "Yes",
       cancelButtonText: "No",
     });
+
+    if (userId === getId()){
+      Swal.fire("Error!", "You can't delete yourself.", "error");
+      return;
+    }
 
     if (result.isConfirmed) {
       try {
@@ -111,15 +117,17 @@
   style="height: 94vh;"
 >
   <div class="h-full p-4 flex flex-col 4xl:p-6" style="width: 95%">
-    <h1 class="text-2xl font-bold mb-3 4xl:text-4xl 4xl:mb-6">User Management</h1>
+    <h1 class="text-2xl font-bold mb-3 4xl:text-4xl 4xl:mb-6">
+      User Management
+    </h1>
     <div
-      class="flex justify-between items-center w-full bg-white max-h-20 rounded-lg mb-2 shadow-lg "
-      style="height: 10%;"
+      class="flex justify-between items-center w-full bg-white max-h-16 rounded-lg mb-2 shadow-lg"
+      style="height: 9%;"
     >
       <div
         class="flex items-center h-full justify-center items-center space-x-4 p-2"
       >
-        <div class="relative 4xl:ml-2">
+        <div class="relative 4xl:ml-1">
           <label for="table-search" class="sr-only">Search</label>
           <div
             class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
@@ -150,14 +158,14 @@
         </div>
         <select
           on:change={handleFilterRole}
-          class="text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 4xl:text-xl "
+          class="text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 4xl:text-xl"
         >
           <option value="all">All Roles</option>
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
-      <div class="flex items-center h-full justify-center p-3  4xl:mr-2">
+      <div class="flex items-center h-full justify-center p-3 4xl:mr-1">
         <button
           on:click={() => {
             $showCreateUser = true;
@@ -187,8 +195,8 @@
             >
             <TableBodyCell>
               <button
-                on:click={() => handleDeleteUser(user.id)}
                 class="text-red-600 hover:text-red-700 hover:font-bold"
+                on:click={() => handleDeleteUser(user.id)}
               >
                 Delete
               </button>

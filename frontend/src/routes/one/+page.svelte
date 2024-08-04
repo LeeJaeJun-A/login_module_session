@@ -14,5 +14,5 @@
 
 <NavBar {role} />
 <main class="bg-gray-100" style="height: 94vh">
-    <h1>This is one!</h1>
+  <h1>This is one!</h1>
 </main>

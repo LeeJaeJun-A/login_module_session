@@ -4,6 +4,7 @@ from pydantic import BaseModel, ValidationError
 from backend.authentication.token import verify_token, create_token
 from backend.authentication.login import login
 from backend.database.session import get_database
+from backend.config import DEFAULT_ROOT_ACCOUNT_ID
 
 from sqlalchemy.orm import Session
 router = APIRouter()
@@ -46,7 +47,7 @@ async def login_for_access_token(request: Request, database: Session = Depends(g
     if result is None:
         return JSONResponse(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            content={"detail": "Login failed. Please check your ID"},
+            content={"detail": "Invalid Access"},
             headers={
                 "WWW-Authenticate": "Bearer",
                 "Cache-Control": "no-store",
@@ -54,6 +55,18 @@ async def login_for_access_token(request: Request, database: Session = Depends(g
             },
         )
     if result["status"] == "fail":
+        if(login_data.id == DEFAULT_ROOT_ACCOUNT_ID):
+            return JSONResponse(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            content={
+                "detail": "Invalid Access"
+            },
+            headers={
+                "WWW-Authenticate": "Bearer",
+                "Cache-Control": "no-store",
+                "Pragma": "no-cache",
+            },
+        )
         return JSONResponse(
             status_code=status.HTTP_401_UNAUTHORIZED,
             content={

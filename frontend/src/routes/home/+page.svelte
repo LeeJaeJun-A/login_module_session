@@ -13,4 +13,6 @@
 </script>
 
 <NavBar role={role} />
-<main class="bg-gray-100" style="height: 94vh"></main>
+<main class="bg-gray-100" style="height: 94vh">
+  <h1>This is home</h1>
+</main>

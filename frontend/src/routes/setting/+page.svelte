@@ -8,7 +8,7 @@
   import LockManagement from "$lib/components/LockManagement.svelte";
 
   let role: string | null = null;
-  
+
   onMount(async () => {
     await initializeSession();
     role = getRole();

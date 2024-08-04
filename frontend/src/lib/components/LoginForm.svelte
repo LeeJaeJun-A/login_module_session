@@ -31,11 +31,11 @@
           });
         },
         (error) => {
-          if (error.detail === "User not found.") {
+          if (error.detail === "User not found." || error.detail === "Invalid Access") {
             Swal.fire({
               icon: "error",
               title: "Login Failed",
-              text: `${error.detail} Please check your ID.`,
+              text: `${error.detail}. Please check your account.`,
             });
             return;
           }
