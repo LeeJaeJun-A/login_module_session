@@ -1,6 +1,6 @@
 import bcrypt
 from sqlalchemy.orm import Session
-from backend.model import User, Base
+from backend.database.models import User, Base
 from backend.database.database import engine
 from backend.config import DEFAULT_ROOT_ACCOUNT_ID, DEFAULT_ROOT_ACCOUNT_PASSWORD
 from datetime import datetime

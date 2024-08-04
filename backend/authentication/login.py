@@ -1,5 +1,5 @@
 from typing import Optional
-from backend.model import User
+from backend.database.models import User
 from backend.user.lock_management import (
     increment_failed_attempts,
     check_account_locked,

@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from backend.model import User
+from backend.database.models import User
 from sqlalchemy.orm import Session
 from backend.config import MAX_FAILURES, LOCK_TIME_MINUTES, DEFAULT_ROOT_ACCOUNT_ID
 

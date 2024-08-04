@@ -45,6 +45,10 @@ VITE_FASTAPI_URL="http://127.0.0.1:8000"  # Replace with your production FastAPI
 # Password Rehashing Configuration
 REHASH_COUNT_STANDARD=10  # Adjust based on your security requirements
 ```
+3. Run the Backend Server:
+```
+uvicorn backend.main:app --reload
+```
 
 ### 3. Set Up the SvelteKit Frontend
 1. Install Frontend Dependencies:
