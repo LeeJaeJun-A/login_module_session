@@ -21,7 +21,7 @@
 <NavBar {role} />
 <main class="flex flex-col bg-gray-100" style="height: 94vh">
   <div class="flex flex-1 overflow-hidden h-full">
-    <SideBar />
+    <SideBar/>
     <div class="flex-1 overflow-auto h-full">
       {#if current_mode === "UserManagement"}
         <UserManagement />

@@ -10,6 +10,7 @@
   import { getId, setMode } from "$lib/store";
   import { onMount } from "svelte";
 
+
   let id : string | null = null;
 
   async function clickUserManagement() {
@@ -27,29 +28,27 @@
   });
 </script>
 
-<section class="h-full">
-  <Sidebar class="h-full">
-    <SidebarWrapper class="h-full">
+<section class="h-full min-w-64" style="width: 15vw">
+  <Sidebar class="h-full w-full">
+    <SidebarWrapper class="h-full w-full">
       <SidebarGroup>
-        <h1 class="text-lg font-bold mb-4 text-center text-black">
+        <h1 class="text-lg font-bold mb-4 text-center text-black 4xl:text-2xl 4xl:mb-6 4xl:mt-2">
           Welcome {id}
         </h1>
-        <hr class="border-gray-600 mb-4" />
-        <SidebarItem label="User Management" on:click={clickUserManagement}>
+        <hr class="border-gray-600" />
+        <SidebarItem label="User Management" class="4xl:text-xl" on:click={clickUserManagement}>
           <svelte:fragment slot="icon">
             <UserSolid
-              class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
             />
           </svelte:fragment>
         </SidebarItem>
-        <SidebarItem label="Lock Management" on:click={clickLockManagement}>
+        <SidebarItem label="Lock Management" class="4xl:text-xl" on:click={clickLockManagement}>
           <svelte:fragment slot="icon">
             <svg
-              class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+              class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
