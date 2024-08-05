@@ -57,21 +57,6 @@ cd frontend
 npm install
 
 ```
-if you get bleow error,
-``` bash
-Error: Cannot find module 'sweetalert2' imported from 'C:/projects/rcs-web-v2/frontend/src/lib/components/LoginForm.svelte'
-    at nodeImport (file:///C:/projects/rcs-web-v2/frontend/node_modules/vite/dist/node/chunks/dep-mCdpKltl.js:52726:19)
-    at ssrImport (file:///C:/projects/rcs-web-v2/frontend/node_modules/vite/dist/node/chunks/dep-mCdpKltl.js:52591:22)
-    at eval (C:/projects/rcs-web-v2/frontend/src/lib/components/LoginForm.svelte:7:37)
-    at async instantiateModule (file:///C:/projects/rcs-web-v2/frontend/node_modules/vite/dist/node/chunks/dep-mCdpKltl.js:52650:5) {
-  code: 'ERR_MODULE_NOT_FOUND'
-}
-```
-you need to insatll the 'sweetalert2' package specifically:
-```bash
-npm install sweetalert2
-```
-
 2. Run the Frontend Development Server:
 ```bash
 npm run dev
@@ -102,5 +87,5 @@ Retrieves a list of locked user accounts.
 ### post /users/{id}/unlock
 Unlocks a user account by ID.
 
-### post /users/{id}/lock"
+### post /users/{id}/lock
 Locks a user account by ID.
