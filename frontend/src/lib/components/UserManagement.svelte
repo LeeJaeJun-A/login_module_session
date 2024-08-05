@@ -79,14 +79,14 @@
 
   async function deleteUser(userId: string) {
     return new Promise<void>((resolve, reject) => {
-      fastapi("DELETE", `/users/${userId}`, {}, resolve, reject);
+      fastapi("DELETE", `/user/${userId}`, {}, resolve, reject);
     });
   }
 
   async function fetchUsers() {
     try {
       users = await new Promise((resolve, reject) => {
-        fastapi("GET", "/users", {}, resolve, reject);
+        fastapi("GET", "/user", {}, resolve, reject);
       });
     } catch (error) {
       let errorMessage = "An unknown error occurred";

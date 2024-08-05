@@ -58,7 +58,7 @@ def create_user_in_db(user_data: UserCreate, database: Session) -> User:
     return new_user
 
 
-@router.post("/users", response_model=UserCreateResponse)
+@router.post("/user", response_model=UserCreateResponse)
 def create_user(user_data: UserCreate, database: Session = Depends(get_database)):
     existing_user = database.query(User).filter(User.id == user_data.id).one_or_none()
     if existing_user:
@@ -71,7 +71,7 @@ def create_user(user_data: UserCreate, database: Session = Depends(get_database)
     return UserCreateResponse(id=new_user.id, role=new_user.role)
 
 
-@router.delete("/users/{id}")
+@router.delete("/user/{id}")
 def delete_user(id: str, database: Session = Depends(get_database)):
     user = database.query(User).filter(User.id == id).one_or_none()
     if not user:
@@ -90,7 +90,7 @@ def delete_user(id: str, database: Session = Depends(get_database)):
     return {"detail": f"User {id} has been deleted."}
 
 
-@router.get("/users", response_model=List[UserInfo])
+@router.get("/user", response_model=List[UserInfo])
 def get_users(role: str = "all", database: Session = Depends(get_database)):
     if role not in ["all", "admin", "user"]:
         raise HTTPException(
@@ -117,7 +117,7 @@ def get_users(role: str = "all", database: Session = Depends(get_database)):
     ]
 
 
-@router.get("/users/locked", response_model=List[LockedUserInfo])
+@router.get("/user/locked", response_model=List[LockedUserInfo])
 def get_locked_users(database: Session = Depends(get_database)):
     locked_users = database.query(User).filter(User.is_locked == True).all()
 
@@ -132,7 +132,7 @@ def get_locked_users(database: Session = Depends(get_database)):
     ]
 
 
-@router.post("/users/{id}/unlock")
+@router.post("/user/{id}/unlock")
 def unlock_user(id: str, database: Session = Depends(get_database)):
     if not unlock_account(id, database):
         raise HTTPException(
@@ -142,7 +142,7 @@ def unlock_user(id: str, database: Session = Depends(get_database)):
     return {"detail": f"User {id} has been unlocked."}
 
 
-@router.post("/users/{id}/lock")
+@router.post("/user/{id}/lock")
 def lock_user(id: str, database: Session = Depends(get_database)):
     if not lock_account(id, database):
         raise HTTPException(

@@ -23,7 +23,7 @@
   async function unlockUser(userId: string) {
     try {
       await new Promise<void>((resolve, reject) => {
-        fastapi("POST", `/users/${userId}/unlock`, {}, resolve, reject);
+        fastapi("POST", `/user/${userId}/unlock`, {}, resolve, reject);
       });
 
       locked_users = locked_users.filter((user) => user.id !== userId);
@@ -36,11 +36,9 @@
   async function fetchUsers() {
     try {
       locked_users = await new Promise((resolve, reject) => {
-        fastapi("GET", "/users/locked", {}, resolve, reject);
+        fastapi("GET", "/user/locked", {}, resolve, reject);
       });
-      console.log(locked_users);
     } catch (error) {
-      console.log(error);
       let errorMessage = "An unknown error occurred";
       if (error instanceof Error) {
         errorMessage = error.message;

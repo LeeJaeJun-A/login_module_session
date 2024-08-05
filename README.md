@@ -72,20 +72,20 @@ Refreshes the access token using the provided refresh token.
 ### get /verify-token
 Verifies the validity of a provided JWT and returns user information.
 
-### post /users
+### post /user
 Creates a new user in the database.
 
-### delete /users/{id}
+### delete /user/{id}
 Deletes a user by ID, except the root administrator account.
 
-### get /users
+### get /user
 Retrieves a list of users, optionally filtered by role.
 
-### get /users/locked
+### get /user/locked
 Retrieves a list of locked user accounts.
 
-### post /users/{id}/unlock
+### post /user/{id}/unlock
 Unlocks a user account by ID.
 
-### post /users/{id}/lock
+### post /user/{id}/lock
 Locks a user account by ID.
