@@ -39,14 +39,14 @@
         <SidebarItem label="User Management" class="4xl:text-2xl" on:click={clickUserManagement}>
           <svelte:fragment slot="icon">
             <UserSolid
-              class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
+              class="w-6 h-6 text-gray-500 4xl:w-8 4xl:h-8"
             />
           </svelte:fragment>
         </SidebarItem>
         <SidebarItem label="Lock Management" class="4xl:text-2xl" on:click={clickLockManagement}>
           <svelte:fragment slot="icon">
             <svg
-              class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
+              class="w-6 h-6 text-gray-500 4xl:w-8 4xl:h-8"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
