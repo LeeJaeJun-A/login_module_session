@@ -4,7 +4,7 @@ from pydantic import BaseModel, ValidationError
 from backend.authentication.token import verify_token, create_token
 from backend.authentication.login import login
 from backend.database.session import get_database
-from backend.config import DEFAULT_ROOT_ACCOUNT_ID
+from backend.config import DEFAULT_ROOT_ACCOUNT_ID, JWT_ACCESS_TOKEN_EXPIRE_SECONDS
 
 from sqlalchemy.orm import Session
 router = APIRouter()
@@ -18,7 +18,10 @@ class LoginRequest(BaseModel):
 class TokenRefreshRequest(BaseModel):
     refresh_token: str
 
-
+class TokenRefreshResponse(BaseModel):
+    access_token: str
+    token_type: str
+    
 class TokenResponse(BaseModel):
     access_token: str
     refresh_token: str
@@ -94,16 +97,28 @@ async def login_for_access_token(request: Request, database: Session = Depends(g
     )
 
 
-@router.post("/refresh", response_model=TokenResponse)
+@router.post("/refresh", response_model=TokenRefreshResponse)
 async def refresh_access_token(request: TokenRefreshRequest):
     payload = verify_token(request.refresh_token)
+
     if payload is None:
         return JSONResponse(
             status_code=status.HTTP_401_UNAUTHORIZED,
             content={"detail": "Invalid refresh token"},
             headers={"WWW-Authenticate": "Bearer"},
         )
-    access_token = create_token(data={"sub": payload["sub"]})
+
+    if "id" not in payload:
+        return JSONResponse(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            content={"detail": "Invalid payload structure"},
+        )
+
+    access_token = create_token(
+        data={"id": payload["id"], "role": payload["role"]},
+        expire_second=JWT_ACCESS_TOKEN_EXPIRE_SECONDS,
+    )
+
     return JSONResponse(
         status_code=status.HTTP_200_OK,
         content={"access_token": access_token, "token_type": "bearer"},
