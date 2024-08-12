@@ -55,9 +55,14 @@ uvicorn backend.main:app --reload
 ```bash
 cd frontend
 npm install
-
 ```
-2. Run the Frontend Development Server:
+2. Configure .env File:
+```frontend/.env
+# FastAPI URL Configuration
+# URL for the FastAPI application. Change this to the production URL.  # Replace with your production FastAPI URL
+VITE_FASTAPI_URL="http://127.0.0.1:8000"
+```
+3. Run the Frontend Development Server:
 ```bash
 npm run dev
 ```
