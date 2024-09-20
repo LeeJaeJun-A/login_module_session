@@ -14,7 +14,7 @@ const fastapi = (
     failureCallback?: Callback,
     token?: string
 ) => {
-    const baseUrl = import.meta.env.VITE_FASTAPI_URL || 'http://127.0.0.1:8000';
+    const baseUrl = import.meta.env.VITE_BACKEND_API_URL_PREFIX || 'http://127.0.0.1:8000';
     let body: string | undefined;
 
     let _url = baseUrl + url;

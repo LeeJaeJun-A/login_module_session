@@ -1,29 +1,46 @@
-import { writable } from "svelte/store";
+import { writable, type Writable, get } from "svelte/store";
+import fastapi from "./fastapi";
 
-export const id = writable<string | null>(null);
-export const role = writable<string | null>(null);
-export const mode = writable<string | null>(null);
+export const user_id: Writable<string> = writable("");
+export const role: Writable<string> = writable("");
+export const mode: Writable<string> = writable("");
 
-export const getId = () => {
-  let currentId: string | null = null;
-  id.subscribe((value) => (currentId = value))();
-  return currentId;
-};
+export function getUserId(): string {
+  return get(user_id);
+}
 
-export const getRole = () => {
-  let currentRole: string | null = null;
-  role.subscribe((value) => (currentRole = value))();
-  return currentRole;
-};
+export function getRole(): string {
+  return get(role);
+}
 
-export const setId = (newId: string | null) => {
-  id.set(newId);
-};
+export function getMode(): string {
+  return get(mode);
+}
 
-export const setRole = (newRole: string | null) => {
-  role.set(newRole);
-};
+export function setUserId(value: string): void {
+  user_id.set(value);
+}
 
-export const setMode = (newMode: string | null) => {
-  mode.set(newMode);
-};
+export function setRole(value: string): void {
+  role.set(value);
+}
+
+export function setMode(value: string): void {
+  mode.set(value);
+}
+
+export async function logout(): Promise<void> {
+  try {
+    setUserId("");
+    setRole("");
+    setMode("");
+
+    await new Promise<{ message: string }>((resolve, reject) => {
+      fastapi("POST", "/api/auth/login", {}, resolve, reject);
+    });
+
+    window.location.href = '/';
+  } catch (error: any) {
+    console.error(error); // need to change
+  }
+}
