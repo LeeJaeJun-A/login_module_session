@@ -2,7 +2,7 @@
     import { logout } from "$lib/components/login/login";
 </script>
 
-<nav class="bg-main p-4">
+<nav class="bg-main p-4 select-none">
   <div class="flex justify-between items-center w-full">
     <div class="flex items-center space-x-4">
       <a href="/" class="flex items-center">

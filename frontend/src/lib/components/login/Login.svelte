@@ -86,7 +86,7 @@
 </script>
 
 <div class="w-5/12 h-full border rounded-l-3xl bg-gray-50 flex flex-col p-14">
-  <form class="flex-1 flex flex-col justify-center">
+  <form class="flex-1 flex flex-col justify-center select-none">
     <p class="text-2xl 4xl:text-4xl font-bold mb-4 4xl:mb-12 text-gray-800">
       Log In
     </p>
