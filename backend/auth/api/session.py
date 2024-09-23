@@ -52,7 +52,7 @@ def create_session(request: CreateSessionRequest, response: Response):
 
 
 @router.get("/session", response_model=GetSessionResponse)
-def get_session(request: Request, user_id: str):
+def get_session(request: Request):
     try:
         session_id = request.cookies.get("session_id")
 
@@ -60,9 +60,6 @@ def get_session(request: Request, user_id: str):
             raise HTTPException(status_code=400, detail="Session ID is missing")
 
         db_session = session_manager.get_session_by_id(session_id)
-
-        if db_session.user_id != user_id:
-            raise HTTPException(status_code=403, detail="Invalid session for this user")
 
         return {
             "user_id": db_session.user_id,

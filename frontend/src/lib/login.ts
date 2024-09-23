@@ -26,11 +26,29 @@ export async function logout(): Promise<void> {
     setRole("");
 
     await new Promise<{ message: string }>((resolve, reject) => {
-      fastapi("POST", "/api/auth/login", {}, resolve, reject);
+      fastapi("POST", "/auth/logout", {}, resolve, reject);
     });
-
-    window.location.href = '/';
   } catch (error: any) {
     console.error(error); // need to change
+  } finally {
+    window.location.href = '/';
+  }
+}
+
+export async function checkSession(): Promise<void> {
+  try{
+    const response = await new Promise<{ user_id: string, role:string }>((resolve, reject) => {
+      fastapi("GET", "/auth/session", {}, resolve, reject);
+    });
+
+    if(!getUserId()){
+      setRole(response.user_id);
+    }
+
+    if(!getRole()){
+      setRole(response.role);
+    }
+  }catch{
+    logout();
   }
 }
