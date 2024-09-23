@@ -71,16 +71,23 @@ def get_session(request: Request):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.post("/logout")
-def logout(response: Response):
-    try:
-        session_id = response.cookies.get("session_id")
+import logging
 
+
+@router.post("/logout")
+def logout(request: Request, response: Response):
+    try:
+        # Log the attempt to logout
+        logging.info("Attempting to log out")
+
+        session_id = request.cookies.get("session_id")
         if not session_id:
+            logging.error("No session ID found in cookies")
             raise HTTPException(
                 status_code=400, detail="No session ID found in cookies"
             )
 
+        # Clear the session cookie
         response.set_cookie(
             key="session_id",
             value="",
@@ -92,12 +99,17 @@ def logout(response: Response):
             secure=False,
         )
 
+        # Attempt to delete the session
         session_deleted = session_manager.delete_session(session_id)
         if not session_deleted:
+            logging.error(f"Session {session_id} not found")
             raise HTTPException(status_code=404, detail="Session not found")
 
+        logging.info(f"Session {session_id} deleted successfully")
         return {"message": "Logged out successfully"}
     except HTTPException as e:
+        logging.error(f"HTTPException: {e.detail}")
         raise e
     except Exception as e:
+        logging.error(f"Unexpected error: {str(e)}")
         raise HTTPException(status_code=500, detail="An internal error occurred")

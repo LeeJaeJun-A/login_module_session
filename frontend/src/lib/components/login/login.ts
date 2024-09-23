@@ -1,5 +1,5 @@
 import { writable, type Writable, get } from "svelte/store";
-import fastapi from "./fastapi";
+import fastapi from "../../fastapi";
 
 export const user_id: Writable<string> = writable("");
 export const role: Writable<string> = writable("");
@@ -42,7 +42,7 @@ export async function checkSession(): Promise<void> {
     });
 
     if(!getUserId()){
-      setRole(response.user_id);
+      setUserId(response.user_id);
     }
 
     if(!getRole()){

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import fastapi from "$lib/fastapi";
-  import { getRole, setRole, setUserId } from "$lib/login";
+  import { getRole, setRole, setUserId } from "$lib/components/login/login";
   import "izitoast/dist/css/iziToast.min.css";
   import { onDestroy, onMount } from "svelte";
 
