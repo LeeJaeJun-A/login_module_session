@@ -102,7 +102,7 @@
       <input
         type="user_id"
         id="user_id"
-        class="w-full p-2 4xl:p-3 border rounded-lg text-xs 4xl:text-base focus:outline-none focus:ring-0 focus:border-black"
+        class="w-full p-2 4xl:p-3 border rounded-lg text-xs 4xl:text-base focus:outline-none focus:ring-1 focus:ring-black focus:border-black"
         bind:value={user_id}
         required
         placeholder="Enter your user_id"
@@ -117,7 +117,7 @@
       <input
         type="password"
         id="password"
-        class="w-full p-2 4xl:p-3 border rounded-lg text-xs 4xl:text-base focus:outline-none focus:ring-0 focus:border-black"
+        class="w-full p-2 4xl:p-3 border rounded-lg text-xs 4xl:text-base focus:outline-none focus:ring-1 focus:ring-black focus:border-black"
         required
         bind:value={password}
         placeholder="Enter your password"
@@ -125,7 +125,7 @@
     </div>
     <button
       type="button"
-      class="w-full bg-green-500 text-white text-xs 4xl:text-base py-2 4xl:py-3 4xl:mt-6 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out focus:outline-none focus:ring-0 focus:border-black"
+      class="w-full bg-green-500 text-white text-xs 4xl:text-base py-2 4xl:py-3 4xl:mt-6 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out focus:outline-none focus:ring-1 focus:ring-black  focus:border-black"
       on:click={signInClicked}
     >
       Sign In
