@@ -1,11 +1,10 @@
 <script>
-	import NotFoundIcon from "/notfound.svg"
 	import { Button, P } from 'flowbite-svelte';
 	export let title = 'Page not found';
 	export let description =
 		'Oops! Looks like you followed a bad link. If you think this is a problem with us, please	tell us.';
 	export let image = {
-		src: NotFoundIcon,
+		src: "/notfound.svg",
 		alt: 'astronaut'
 	};
 	export let btnTitle = 'Go back home';

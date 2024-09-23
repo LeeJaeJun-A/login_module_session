@@ -1,11 +1,10 @@
 <script>
-  import ErrorIcon from "/error.svg";
   import { Button, P } from "flowbite-svelte";
   export let title = "Something has gone seriously wrong";
   export let description =
     "It's always time for a coffee break. We should be back by the time you finish your coffee.";
   export let image = {
-    src: ErrorIcon,
+    src: "/error.svg",
     alt: "astronaut",
   };
   export let btnHref = "/";
