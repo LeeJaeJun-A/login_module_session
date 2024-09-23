@@ -102,7 +102,7 @@ def get_user_list():
 @router.delete("/user")
 def delete_user(request: UserDeleteRequest):
     if request.user_id == DEFAULT_ROOT_ACCOUNT_ID:
-        raise HTTPException(status_code=403, detail="Cannot delete the root account")
+        raise HTTPException(status_code=403, detail="Unable to delete root administrator account")
     success = user_manager.delete_user(request.user_id)
     if success:
         return {"message": "User deleted successfully"}
