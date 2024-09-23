@@ -89,3 +89,33 @@ VITE_FASTAPI_URL="http://127.0.0.1:8000"
 ```bash
 npm run dev
 ```
+
+## Running with Docker Compose
+
+If you prefer to run the entire application using Docker Compose, follow these steps:
+
+1. Ensure you have Docker and Docker Compose installed on your system.
+
+2. In the root directory of the project (where docker-compose.yml is located), run the following command:
+
+```bash
+docker-compose up --build
+```
+
+This command will:
+
+- Build the Docker images for both the backend and frontend services.
+- Start the backend FastAPI server, and frontend SvelteKit server.
+
+3. Access the application:
+
+- Frontend: Visit http://localhost:4173 in your web browser to view the frontend application.
+- Backend: The FastAPI backend will be running at http://localhost:8000.
+
+To stop the application, press CTRL + C in the terminal where Docker Compose is running, or use:
+
+```bash
+docker-compose down
+```
+
+This command will stop and remove the containers, but your data will persist in the Docker volumes.
