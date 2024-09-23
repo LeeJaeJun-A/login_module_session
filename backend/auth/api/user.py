@@ -4,6 +4,7 @@ from backend.auth.manager.user_manager import UserManager
 from backend.auth.manager.session_manager import SessionManager
 from starlette.status import HTTP_401_UNAUTHORIZED
 from backend.config import DEFAULT_ROOT_ACCOUNT_ID, SESSION_EXPIRE_MINUTE
+from datetime import datetime
 
 router = APIRouter()
 user_manager = UserManager()
@@ -24,7 +25,7 @@ class UserCreateRequest(BaseModel):
 class UserResponse(BaseModel):
     user_id: str
     role: str
-    is_locked: bool
+    created_at: datetime
 
 
 class LockUnlockRequest(BaseModel):
@@ -87,7 +88,7 @@ def create_user(request: UserCreateRequest):
 def get_user_list():
     users = user_manager.get_all_users()
     return [
-        UserResponse(user_id=user.id, role=user.role, is_locked=user.is_locked)
+        UserResponse(user_id=user.id, role=user.role, created_at=user.created_at)
         for user in users
     ]
 

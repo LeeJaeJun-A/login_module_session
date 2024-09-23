@@ -9,9 +9,10 @@
   >
     <Login />
     <div
-      class="w-7/12 h-full border rounded-r-3xl flex justify-center items-center bg-white relative"
+      class="w-7/12 h-full border rounded-r-3xl flex justify-center items-center bg-white relative text-6xl font-bold"
     >
-      <img src="/logo.png" class="select-none" alt="Logo" />
+      <!-- <img src="/logo.png" class="select-none" alt="Logo" /> -->
+       RMS
     </div>
   </div>
 </main>

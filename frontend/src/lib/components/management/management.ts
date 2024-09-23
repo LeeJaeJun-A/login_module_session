@@ -9,5 +9,6 @@ export function getMode(): string {
 }
 
 export function setMode(value: string): void {
-  role.set(value);
+  console.log(value);
+  mode.set(value);
 }

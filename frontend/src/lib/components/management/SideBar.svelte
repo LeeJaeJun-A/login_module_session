@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { getUserId, logout } from "$lib/components/login/login";
+  import { logout } from "$lib/components/login/login";
+  import { mode, setMode, options } from "$lib/components/management/management";
+
+  export let userid: string = "";
 </script>
 
 <aside
@@ -13,13 +16,14 @@
         <p
           class="flex items-center w-full p-2 whitespace-nowrap border-b border-gray-300"
         >
-          Hello {getUserId()}!
+          Hello {userid}!
         </p>
       </li>
       <li>
         <button
           class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full"
-        >
+          on:click={()=>{setMode(options[0]);}}
+          >
           <svg
             class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white flex"
             aria-hidden="true"
@@ -38,7 +42,8 @@
       <li>
         <button
           class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full"
-        >
+          on:click={()=>{setMode(options[1]);}}
+          >
           <svg
             class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
             aria-hidden="true"
