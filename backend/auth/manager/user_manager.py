@@ -226,6 +226,17 @@ class UserManager(BaseManager):
         finally:
             session.close()
 
+    def get_all_lock_users(self):
+        session = self.get_session()
+        try:
+            locked_user = session.query(User).filter(User.is_locked == True).all()
+            return locked_user
+        except Exception as e:
+            session.rollback()
+            raise ValueError("Failed to retrieve locked users") from e
+        finally:
+            session.close()
+
     def unlock_account(self, user_id: str) -> bool:
         session = self.get_session()
         try:

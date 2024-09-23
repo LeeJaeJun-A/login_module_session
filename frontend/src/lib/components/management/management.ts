@@ -9,6 +9,5 @@ export function getMode(): string {
 }
 
 export function setMode(value: string): void {
-  console.log(value);
   mode.set(value);
 }

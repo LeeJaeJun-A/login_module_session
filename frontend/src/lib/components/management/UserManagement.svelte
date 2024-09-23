@@ -94,8 +94,6 @@
       users = await new Promise((resolve, reject) => {
         fastapi("GET", "/auth/user", {}, resolve, reject);
       });
-
-      console.log(users);
     } catch (error) {
       let errorMessage = "An unknown error occurred";
       if (error instanceof Error) {

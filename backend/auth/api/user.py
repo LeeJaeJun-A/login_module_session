@@ -36,11 +36,17 @@ class UserDeleteRequest(BaseModel):
     user_id: str
 
 
+class LockUserResponse(BaseModel):
+    user_id: str
+    role: str
+    last_failed_login: datetime
+
+
 @router.post("/login")
 def login_user(login_data: LoginRequest, response: Response):
     user_id = login_data.user_id
     password = login_data.password
-    
+
     try:
         if user_id != DEFAULT_ROOT_ACCOUNT_ID:
             user_role = user_manager.login(user_id, password)
@@ -66,7 +72,7 @@ def login_user(login_data: LoginRequest, response: Response):
             return {"message": "Login successful", "role": user_role}
 
         raise HTTPException(
-            status_code=HTTP_401_UNAUTHORIZED, detail="Invalid credentials"
+            status_code=HTTP_401_UNAUTHORIZED, detail="Invalid account"
         )
     except HTTPException as http_err:
         raise http_err
@@ -102,6 +108,24 @@ def delete_user(request: UserDeleteRequest):
         return {"message": "User deleted successfully"}
     else:
         raise HTTPException(status_code=404, detail="User not found or deletion failed")
+
+
+@router.get("/lock")
+def get_lock_user_list():
+    locked_users = user_manager.get_all_lock_users()
+    return [
+        LockUserResponse(
+            user_id=locked_users.id,
+            role=locked_users.role,
+            last_failed_login=locked_users.last_failed_login,
+        )
+    ]
+
+
+@router.get("/lock/count")
+def get_lock_user_count():
+    locked_users = user_manager.get_all_lock_users()
+    return len(locked_users)
 
 
 @router.post("/unlock")

@@ -1,8 +1,18 @@
 <script lang="ts">
   import { logout } from "$lib/components/login/login";
-  import { mode, setMode, options } from "$lib/components/management/management";
+  import { setMode, options } from "$lib/components/management/management";
+  import { onMount } from "svelte";
+  import fastapi from "$lib/fastapi";
 
   export let userid: string = "";
+
+  let locked_user_count: number = 0;
+
+  onMount(async () => {
+    locked_user_count = await new Promise<number>((resolve, reject) => {
+      fastapi("GET", "/auth/lock/count", {}, resolve, reject);
+    });
+  });
 </script>
 
 <aside
@@ -22,8 +32,10 @@
       <li>
         <button
           class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full"
-          on:click={()=>{setMode(options[0]);}}
-          >
+          on:click={() => {
+            setMode(options[0]);
+          }}
+        >
           <svg
             class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white flex"
             aria-hidden="true"
@@ -42,8 +54,10 @@
       <li>
         <button
           class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full"
-          on:click={()=>{setMode(options[1]);}}
-          >
+          on:click={() => {
+            setMode(options[1]);
+          }}
+        >
           <svg
             class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
             aria-hidden="true"
@@ -59,10 +73,12 @@
           </svg>
           <span class="flex-1 ms-3 whitespace-nowrap text-left">Lock Users</span
           >
+          {#if locked_user_count > 0}
           <span
             class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300"
-            >3</span
+            >{locked_user_count}</span
           >
+          {/if}
         </button>
       </li>
       <li>

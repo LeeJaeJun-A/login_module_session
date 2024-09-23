@@ -5,11 +5,8 @@
   import "izitoast/dist/css/iziToast.min.css";
   import { onDestroy, onMount } from "svelte";
 
-  const modes = ["ems/dashboards", "rcs"];
-
   let user_id: string = "";
   let password: string = "";
-  let mode: string = modes[0];
 
   async function signInClicked(event: Event) {
     event.preventDefault();
@@ -54,10 +51,10 @@
           title: "Login Failed",
           message: "Invalid user_id or password. Please try again.",
         });
-      } else if (error.message) {
+      } else if (error.detail) {
         iziToast.error({
           title: "Error",
-          message: error.message,
+          message: error.detail,
         });
       } else {
         iziToast.error({
