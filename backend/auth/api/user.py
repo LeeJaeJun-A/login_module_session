@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 from fastapi import APIRouter, HTTPException, Response
-from auth.manager.user_manager import UserManager
-from auth.manager.session_manager import SessionManager
+from backend.auth.manager.user_manager import UserManager
+from backend.auth.manager.session_manager import SessionManager
 from starlette.status import HTTP_401_UNAUTHORIZED
-from config import (
+from backend.config import (
     DEFAULT_ROOT_ACCOUNT_ID,
     SESSION_EXPIRE_MINUTE
 )

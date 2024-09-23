@@ -2,7 +2,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional, Dict
 from jose import jwt
 from fastapi import HTTPException, status
-from auth.config import (
+from backend.config import (
     JWT_SECRET_KEY,
     JWT_ALGORITHM,
     JWT_ACCESS_TOKEN_EXPIRE_SECONDS,

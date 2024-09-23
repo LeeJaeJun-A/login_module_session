@@ -5,10 +5,10 @@ from starlette.status import (
     HTTP_403_FORBIDDEN,
     HTTP_404_NOT_FOUND,
 )
-from auth.database.models import User
-from auth.database.base_manager import BaseManager
+from backend.auth.database.models import User
+from backend.auth.database.base_manager import BaseManager
 from datetime import datetime, timedelta
-from auth.config import (
+from backend.config import (
     LOCK_TIME_MINUTES,
     MAX_FAILURES,
     REHASH_COUNT_STANDARD,

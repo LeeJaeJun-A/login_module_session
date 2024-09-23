@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from auth.api import jwt, user, session
-from auth.manager.session_manager import SessionManager
+from backend.auth.api import jwt, user, session
+from backend.auth.manager.session_manager import SessionManager
 from apscheduler.schedulers.background import BackgroundScheduler
 from contextlib import asynccontextmanager
 

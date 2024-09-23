@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker, scoped_session
-from auth.database.models import Base
+from backend.auth.database.models import Base
 
 
 class BaseManager:

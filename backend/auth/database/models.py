@@ -8,16 +8,16 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(String, primary_key=True, index=True)
+    id = Column(String(255), primary_key=True, index=True)
 
     # Password for the user, should be stored as a hashed value
-    password = Column(String, nullable=False)
+    password = Column(String(255), nullable=False)
 
     # Salt value used for hashing the password
-    salt = Column(String, nullable=False)
+    salt = Column(String(255), nullable=False)
 
     # Role of the user (e.g., 'admin', 'user')
-    role = Column(String, nullable=False)
+    role = Column(String(50), nullable=False)
 
     # The number of successful requests
     logins_before_rehash = Column(Integer, nullable=False, default=0)

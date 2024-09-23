@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Response, Request
-from auth.manager.session_manager import SessionManager
+from backend.auth.manager.session_manager import SessionManager
 from pydantic import BaseModel
-from auth.config import SESSION_EXPIRE_MINUTE
+from backend.config import SESSION_EXPIRE_MINUTE
 
 router = APIRouter()
 session_manager = SessionManager()

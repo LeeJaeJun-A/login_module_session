@@ -1,9 +1,9 @@
-from auth.database.models import SessionModel
-from auth.database.base_manager import BaseManager
+from backend.auth.database.models import SessionModel
+from backend.auth.database.base_manager import BaseManager
 from datetime import datetime, timedelta
 import uuid
 from fastapi import HTTPException
-from auth.config import DOCKER_SESSION_DATABASE_URI, SESSION_DATABASE_URI, IS_DOCKER
+from backend.config import DOCKER_SESSION_DATABASE_URI, SESSION_DATABASE_URI, IS_DOCKER
 
 
 class SessionManager(BaseManager):

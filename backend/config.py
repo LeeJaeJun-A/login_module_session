@@ -15,16 +15,16 @@ JWT_REFRESH_TOKEN_EXPIRE_SECONDS = int(
 SESSION_EXPIRE_MINUTE = int(os.getenv("SESSION_EXPIRE_MINUTE", 30))
 
 DOCKER_USER_DATABASE_URI = os.getenv(
-    "DOCKER_USER_DATABASE_URI", "mysql+pymysql://user:user1234@mysql:3306/user_db"
+    "DOCKER_USER_DATABASE_URI", "mysql+pymysql://user:user1234@mysql:3306/rms_user_db"
 )
 USER_DATABASE_URI = os.getenv(
-    "USER_DATABASE_URI", "mysql+pymysql://user:user1234@127.0.0.1/user_db"
+    "USER_DATABASE_URI", "mysql+pymysql://user:user1234@127.0.0.1/rms_user_db"
 )
 DOCKER_SESSION_DATABASE_URI = os.getenv(
-    "DOCKER_SESSION_DATABASE_URI", "mysql+pymysql://user:user1234@mysql:3306/session_db"
+    "DOCKER_SESSION_DATABASE_URI", "mysql+pymysql://user:user1234@mysql:3306/rms_session_db"
 )
 SESSION_DATABASE_URI = os.getenv(
-    "SESSION_DATABASE_URI", "mysql+pymysql://user:user1234@127.0.0.1/session_db"
+    "SESSION_DATABASE_URI", "mysql+pymysql://user:user1234@127.0.0.1/rms_session_db"
 )
 
 MAX_FAILURES = int(os.getenv("MAX_FAILURES", 5))

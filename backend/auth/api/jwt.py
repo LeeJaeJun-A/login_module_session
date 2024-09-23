@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from fastapi import APIRouter, HTTPException
 from typing import Dict
-from auth.manager.jwt_manager import JWTManager
+from backend.auth.manager.jwt_manager import JWTManager
 
 router = APIRouter()
 token_manager = JWTManager()
