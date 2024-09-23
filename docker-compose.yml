@@ -1,0 +1,69 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - ./backend/.env
+    environment:
+      - IS_DOCKER=true
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+    depends_on:
+      - user_db_mysql
+      - session_db_mysql
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - ./frontend/.env
+    ports:
+      - "4173:4173"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+  user_db_mysql:
+    image: mysql:latest
+    container_name: user_db_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: rms_user_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user1234
+    volumes:
+      - user-mysql-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - app-network
+
+  session_db_mysql:
+    image: mysql:latest
+    container_name: session_db_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: rms_session_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user1234
+    volumes:
+      - session-mysql-data:/var/lib/mysql
+    ports:
+      - "3308:3306"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  user-mysql-data:
+  session-mysql-data:
