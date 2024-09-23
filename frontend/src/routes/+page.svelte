@@ -11,7 +11,7 @@
     <div
       class="w-7/12 h-full border rounded-r-3xl flex justify-center items-center bg-white relative"
     >
-      <img src="/logo.png" class="select-none" alt="logo" />
+      <img src="/logo.png" class="select-none" alt="Logo" />
     </div>
   </div>
 </main>

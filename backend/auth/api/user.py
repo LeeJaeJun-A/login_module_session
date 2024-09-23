@@ -3,14 +3,17 @@ from fastapi import APIRouter, HTTPException, Response
 from backend.auth.manager.user_manager import UserManager
 from backend.auth.manager.session_manager import SessionManager
 from starlette.status import HTTP_401_UNAUTHORIZED
-from backend.config import (
-    DEFAULT_ROOT_ACCOUNT_ID,
-    SESSION_EXPIRE_MINUTE
-)
+from backend.config import DEFAULT_ROOT_ACCOUNT_ID, SESSION_EXPIRE_MINUTE
 
 router = APIRouter()
 user_manager = UserManager()
 session_manager = SessionManager()
+
+
+class LoginRequest(BaseModel):
+    user_id: str
+    password: str
+
 
 class UserCreateRequest(BaseModel):
     user_id: str
@@ -33,7 +36,10 @@ class UserDeleteRequest(BaseModel):
 
 
 @router.post("/login")
-def login_user(user_id: str, password: str, response: Response):
+def login_user(login_data: LoginRequest, response: Response):
+    user_id = login_data.user_id
+    password = login_data.password
+    
     try:
         if user_id != DEFAULT_ROOT_ACCOUNT_ID:
             user_role = user_manager.login(user_id, password)
@@ -42,18 +48,18 @@ def login_user(user_id: str, password: str, response: Response):
 
         if user_role:
             session_id = session_manager.create_session(
-                user_id=user_id, 
-                role=user_role, 
-                expires_in_minutes=SESSION_EXPIRE_MINUTE
+                user_id=user_id,
+                role=user_role,
+                expires_in_minutes=SESSION_EXPIRE_MINUTE,
             )
-            
+
             response.set_cookie(
                 key="session_id",
                 value=session_id,
                 httponly=True,
                 max_age=SESSION_EXPIRE_MINUTE * 60,
                 samesite="Lax",
-                secure=False  # Set to True in production when using HTTPS
+                secure=False,  # Set to True in production when using HTTPS
             )
 
             return {"message": "Login successful", "role": user_role}

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import fastapi from "$lib/fastapi";
+  import { getRole, setRole, setUserId } from "$lib/login";
   import "izitoast/dist/css/iziToast.min.css";
   import { onDestroy, onMount } from "svelte";
 
@@ -30,17 +31,19 @@
 
     try {
       const response = await new Promise<{
-        access_token: string;
-        refresh_token: string;
+        message: string;
         role: string;
       }>((resolve, reject) => {
-        fastapi("POST", "/api/auth/login", params, resolve, reject);
+        fastapi("POST", "/auth/login", params, resolve, reject);
       });
 
-      if (response.role === "admin") {
+      setUserId(user_id);
+      setRole(response.role);
+
+      if (getRole() === "admin") {
         goto("/management");
       } else {
-        goto(`/${mode}`);
+        goto(`/home`);
       }
     } catch (error: any) {
       if (
@@ -93,13 +96,13 @@
     <div class="mb-3 4xl:mb-6">
       <label
         for="user_id"
-        class="block text-xs 4xl:text-sm font-medium text-gray-700 mb-2"
-        >user_id</label
+        class="block text-xs 4xl:text-lg font-medium text-gray-700 mb-2"
+        >ID</label
       >
       <input
         type="user_id"
         id="user_id"
-        class="w-full p-2 4xl:p-3 border rounded-lg text-xs 4xl:text-base"
+        class="w-full p-2 4xl:p-3 border rounded-lg text-xs 4xl:text-base focus:outline-none focus:ring-0 focus:border-black"
         bind:value={user_id}
         required
         placeholder="Enter your user_id"
@@ -108,13 +111,13 @@
     <div class="mb-6">
       <label
         for="password"
-        class="block text-xs 4xl:text-sm font-medium text-gray-700 mb-2"
+        class="block text-xs 4xl:text-lg font-medium text-gray-700 mb-2"
         >Password</label
       >
       <input
         type="password"
         id="password"
-        class="w-full p-2 4xl:p-3 border rounded-lg text-xs 4xl:text-base"
+        class="w-full p-2 4xl:p-3 border rounded-lg text-xs 4xl:text-base focus:outline-none focus:ring-0 focus:border-black"
         required
         bind:value={password}
         placeholder="Enter your password"
@@ -122,7 +125,7 @@
     </div>
     <button
       type="button"
-      class="w-full bg-indigo-600 text-white text-xs 4xl:text-base py-2 4xl:py-3 4xl:mt-6 rounded-lg hover:bg-indigo-700 transition duration-300 ease-in-out"
+      class="w-full bg-green-500 text-white text-xs 4xl:text-base py-2 4xl:py-3 4xl:mt-6 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out focus:outline-none focus:ring-0 focus:border-black"
       on:click={signInClicked}
     >
       Sign In
