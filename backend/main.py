@@ -20,7 +20,7 @@ async def lifespan(app: FastAPI):
     scheduler.shutdown()
 
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 app.include_router(user.router, tags=["user"], prefix="/api/auth")
 app.include_router(session.router, tags=["session"], prefix="/api/auth")

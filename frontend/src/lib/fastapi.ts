@@ -38,6 +38,7 @@ const fastapi = (
         method,
         headers,
         body: method !== 'GET' ? body : undefined,
+        credentials: 'include',
     };
 
     fetch(_url, options)
