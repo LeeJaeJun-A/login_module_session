@@ -21,7 +21,9 @@
       logout();
     } else {
       userid = getUserId();
-      loading = false;
+      setTimeout(() => {
+        loading = false;
+      }, 500);
     }
   });
 </script>

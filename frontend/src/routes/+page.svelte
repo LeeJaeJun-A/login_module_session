@@ -1,18 +1,22 @@
 <script lang="ts">
-  import Login from "$lib/components/login/Login.svelte";
+  import { checkSession } from "$lib/components/login/login";
+  import Loading from "$lib/components/loading/Loading.svelte";
+  import { onMount } from "svelte";
+  import RuleList from "$lib/components/rule_list/RuleList.svelte";
+
+  let loading = true;
+
+  onMount(async () => {
+    loading = true;
+    await checkSession();
+    setTimeout(() => {
+      loading = false;
+    }, 500);
+  });
 </script>
 
-<main class="flex h-screen w-screen justify-center items-center">
-  <div
-    class="flex shadow-lg rounded-3xl overflow-hidden"
-    style="width: 60%; height:70%"
-  >
-    <Login />
-    <div
-      class="w-7/12 h-full border rounded-r-3xl flex justify-center items-center bg-white relative text-6xl font-bold"
-    >
-      <!-- <img src="/logo.png" class="select-none" alt="Logo" /> -->
-       RMS
-    </div>
-  </div>
-</main>
+{#if loading}
+  <Loading />
+{:else}
+  <RuleList />
+{/if}

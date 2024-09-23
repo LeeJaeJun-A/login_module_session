@@ -40,7 +40,7 @@
       if (getRole() === "admin") {
         goto("/management");
       } else {
-        goto(`/home`);
+        goto(`/`);
       }
     } catch (error: any) {
       if (

@@ -11,7 +11,7 @@
 	export let btnHref = '/';
 	export let mainClass = 'flex flex-grow bg-gray-50 dark:bg-gray-900';
 	export let mainDivClass =
-		'flex-grow flex flex-col items-center justify-center px-6 pt-8 mx-auto h-100 pt:mt-0 dark:bg-gray-900';
+		'flex-grow flex flex-col items-center justify-center px-6 pt-8 mx-auto h-screen w-screen pt:mt-0 dark:bg-gray-900';
 	export let h1Class =
 		'mb-3 text-2xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-5xl dark:text-white';
 	export let imgDiv = 'block md:max-w-lg mb-2';

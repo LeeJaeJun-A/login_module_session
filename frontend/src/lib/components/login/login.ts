@@ -1,5 +1,6 @@
 import { writable, type Writable, get } from "svelte/store";
 import fastapi from "../../fastapi";
+import { goto } from "$app/navigation";
 
 export const user_id: Writable<string> = writable("");
 export const role: Writable<string> = writable("");
@@ -31,7 +32,7 @@ export async function logout(): Promise<void> {
   } catch (error: any) {
     console.error(error); // need to change
   } finally {
-    window.location.href = '/';
+    goto("/login", {replaceState:true});
   }
 }
 
