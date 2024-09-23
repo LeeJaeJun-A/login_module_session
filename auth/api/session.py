@@ -38,7 +38,7 @@ def create_session(request: CreateSessionRequest, response: Response):
             value=session_id,
             httponly=True,
             max_age=SESSION_EXPIRE_MINUTE * 60,
-            samesite="Lax",
+            samesite="Strict",
             secure=False,  # Set to True in production when using HTTPS
         )
 
