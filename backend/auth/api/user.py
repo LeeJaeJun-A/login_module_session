@@ -110,25 +110,25 @@ def delete_user(request: UserDeleteRequest):
         raise HTTPException(status_code=404, detail="User not found or deletion failed")
 
 
-@router.get("/lock")
+@router.get("/user/locked")
 def get_lock_user_list():
     locked_users = user_manager.get_all_lock_users()
     return [
         LockUserResponse(
-            user_id=locked_users.id,
-            role=locked_users.role,
-            last_failed_login=locked_users.last_failed_login,
-        )
+            user_id=locked_user.id,
+            role=locked_user.role,
+            last_failed_login=locked_user.last_failed_login,
+        ) for locked_user in locked_users
     ]
 
 
-@router.get("/lock/count")
+@router.get("/user/locked/count")
 def get_lock_user_count():
     locked_users = user_manager.get_all_lock_users()
     return len(locked_users)
 
 
-@router.post("/unlock")
+@router.post("/user/unlock")
 def unlock_user(request: LockUnlockRequest):
     success = user_manager.unlock_account(request.user_id)
     if success:

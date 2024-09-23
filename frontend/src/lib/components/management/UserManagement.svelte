@@ -12,7 +12,7 @@
   import { writable } from "svelte/store";
   import fastapi from "$lib/fastapi";
   import SignUp from "$lib/components/management/SignUp.svelte";
-
+  import { updateLockedUserCount } from "$lib/components/management/management";
   export let userid: string = "";
 
   type User = {
@@ -58,20 +58,21 @@
     });
 
     if (userId === userid) {
-      Swal.fire("Error!", "You can't delete yourself.", "error");
+      Swal.fire("Error!", "You can't delete yourself", "error");
       return;
     }
 
     if (result.isConfirmed) {
       try {
         await deleteUser(userId);
+        await updateLockedUserCount();
         users = users.filter((user) => user.user_id !== userId);
-        Swal.fire("Deleted!", "The user has been deleted.", "success");
+        Swal.fire("Deleted!", "The user has been deleted", "success");
       } catch (error: any) {
-        if (error.detail === "Unable to delete root administrator account.") {
+        if (error.detail) {
           Swal.fire("Error!", `${error.detail}`, "error");
         } else {
-          Swal.fire("Error!", "There was an error deleting the user.", "error");
+          Swal.fire("Error!", "There was an error deleting the user", "error");
         }
       }
     }

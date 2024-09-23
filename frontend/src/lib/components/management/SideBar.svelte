@@ -1,17 +1,17 @@
 <script lang="ts">
   import { logout } from "$lib/components/login/login";
-  import { setMode, options } from "$lib/components/management/management";
+  import {
+    setMode,
+    options,
+    locked_user_count,
+    updateLockedUserCount,
+  } from "$lib/components/management/management";
   import { onMount } from "svelte";
-  import fastapi from "$lib/fastapi";
 
   export let userid: string = "";
 
-  let locked_user_count: number = 0;
-
   onMount(async () => {
-    locked_user_count = await new Promise<number>((resolve, reject) => {
-      fastapi("GET", "/auth/lock/count", {}, resolve, reject);
-    });
+    await updateLockedUserCount();
   });
 </script>
 
@@ -73,11 +73,11 @@
           </svg>
           <span class="flex-1 ms-3 whitespace-nowrap text-left">Lock Users</span
           >
-          {#if locked_user_count > 0}
-          <span
-            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300"
-            >{locked_user_count}</span
-          >
+          {#if $locked_user_count > 0}
+            <span
+              class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300"
+              >{$locked_user_count}</span
+            >
           {/if}
         </button>
       </li>

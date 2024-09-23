@@ -29,14 +29,14 @@
 
       Swal.fire(
         "Success!",
-        "The user has been created successfully.",
+        "The user has been created successfully",
         "success"
       );
       onClose();
     } catch (error: any) {
       Swal.fire(
         "Error!",
-        error.detail || "There was an error creating the user.",
+        error.detail || "There was an error creating the user",
         "error"
       );
     }
