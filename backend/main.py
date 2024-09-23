@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.auth.api import jwt, user, session
+from backend.auth.api import user, session
 from backend.auth.manager.session_manager import SessionManager
 from apscheduler.schedulers.background import BackgroundScheduler
 from contextlib import asynccontextmanager
@@ -22,7 +22,6 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI()
 
-app.include_router(jwt.router, tags=["jwt"], prefix="/api/auth")
 app.include_router(user.router, tags=["user"], prefix="/api/auth")
 app.include_router(session.router, tags=["session"], prefix="/api/auth")
 
