@@ -39,7 +39,7 @@
 
       if (getRole() === "admin") {
         goto("/management");
-      } else {
+      } else if (getRole() === "user") {
         goto(`/`);
       }
     } catch (error: any) {
@@ -122,7 +122,7 @@
     </div>
     <button
       type="button"
-      class="w-full bg-green-500 text-white text-xs 4xl:text-base py-2 4xl:py-3 4xl:mt-6 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out focus:outline-none focus:ring-1 focus:ring-black  focus:border-black"
+      class="w-full bg-green-500 text-white text-xs 4xl:text-base py-2 4xl:py-3 4xl:mt-6 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out focus:outline-none focus:ring-1 focus:ring-black focus:border-black"
       on:click={signInClicked}
     >
       Sign In
