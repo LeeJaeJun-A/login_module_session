@@ -3,15 +3,6 @@ from dotenv import load_dotenv
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
 
-JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", os.urandom(32).hex())
-JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
-JWT_ACCESS_TOKEN_EXPIRE_SECONDS = int(
-    os.getenv("JWT_ACCESS_TOKEN_EXPIRE_SECONDS", 3600)
-)
-JWT_REFRESH_TOKEN_EXPIRE_SECONDS = int(
-    os.getenv("JWT_REFRESH_TOKEN_EXPIRE_SECONDS", 86400)
-)
-
 SESSION_EXPIRE_MINUTE = int(os.getenv("SESSION_EXPIRE_MINUTE", 30))
 
 DOCKER_USER_DATABASE_URI = os.getenv(
