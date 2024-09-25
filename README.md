@@ -1,4 +1,4 @@
-# RMS
+# Login_module_session
 
 ![Svelte](https://img.shields.io/badge/svelte-%23f1413d.svg?style=for-the-badge&logo=svelte&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
@@ -41,10 +41,10 @@ JWT_REFRESH_TOKEN_EXPIRE_SECONDS=86400  # Refresh token expiration time in secon
 SESSION_EXPIRE_MINUTE=30  # Session expiration time in minutes
 
 # Database connection URIs for Docker and local environments
-DOCKER_USER_DATABASE_URI="mysql+pymysql://user:user1234@mysql:3306/rms_user_db"  # URI for the user database in a Docker environment
-USER_DATABASE_URI="mysql+pymysql://user:user1234@127.0.0.1/rms_user_db"  # URI for the user database in a local environment
-DOCKER_SESSION_DATABASE_URI="mysql+pymysql://user:user1234@mysql:3306/rms_session_db"  # URI for the session database in a Docker environment
-SESSION_DATABASE_URI="mysql+pymysql://user:user1234@127.0.0.1/rms_session_db"  # URI for the session database in a local environment
+DOCKER_USER_DATABASE_URI="mysql+pymysql://user:user1234@mysql:3306/user_db"  # URI for the user database in a Docker environment
+USER_DATABASE_URI="mysql+pymysql://user:user1234@127.0.0.1/user_db"  # URI for the user database in a local environment
+DOCKER_SESSION_DATABASE_URI="mysql+pymysql://user:user1234@mysql:3306/session_db"  # URI for the session database in a Docker environment
+SESSION_DATABASE_URI="mysql+pymysql://user:user1234@127.0.0.1/session_db"  # URI for the session database in a local environment
 
 # Default root account credentials
 DEFAULT_ROOT_ACCOUNT_ID="root"  # Default root account username
