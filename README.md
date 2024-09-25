@@ -31,12 +31,6 @@ pip install -r requirements.txt
    You should update .env file properly. Don't use default value.
 
 ```.env
-# JWT configuration settings
-JWT_SECRET_KEY="SERVER_BY_ENKI_LEEJAEJUN"  # Secret key used to sign JWT tokens
-JWT_ALGORITHM="HS256"  # Algorithm used for encoding JWT
-JWT_ACCESS_TOKEN_EXPIRE_SECONDS=3600  # Access token expiration time in seconds (1 hour)
-JWT_REFRESH_TOKEN_EXPIRE_SECONDS=86400  # Refresh token expiration time in seconds (1 day)
-
 # Session expiration settings
 SESSION_EXPIRE_MINUTE=30  # Session expiration time in minutes
 
